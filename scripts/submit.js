@@ -77,11 +77,11 @@ if (referer == 1) {
     result = handle('page-1', 9)
     console.log(result)
     if (result >= 7) { linkto = "meetDoc.html"; }
-    else { linkto = "../learn/index.html"; }
+    else { linkto = "safe.html"; }
 } else if (referer == 2) {
     result = handle('page-2', 9)
     if (result >= 7) { linkto = "meetDoc.html"; }
-    else { linkto = "../learn/index.htmll"; }
+    else { linkto = "safe.htmll"; }
 }
 
 postData({value: Math.floor(Math.random() * 100000)}, domain + '-data-lastid')
