@@ -37,7 +37,7 @@ function handle(page, num) {
         9: x[8]
     }, domain + '-data-000')
     postData({value: Math.floor(Math.random() * 100000)}, domain + '-data-id').then(async function (res) {
-        await sleep(1000);
+        await sleep(100);
         window.location.href = linkto;
     })
     return x[0][0] + x[1][0] + x[2][0] + x[3][0] + x[4][0] + x[5][0] + x[6][0] + x[7][0] + x[8][0]
