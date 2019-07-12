@@ -7,9 +7,9 @@
 #grid {
     display: grid;
     grid-template-areas:
-        "a a a a"
-        "b c d e"
-        "f f f f";
+        "a a a "
+        "b c d "
+        "e e e ";
 
     grid-row-gap: 1rem;
 }
