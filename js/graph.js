@@ -30,13 +30,20 @@ function updateStat(result) {
 }
 
 async function updateGraph() {
+    const numberLast = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-lastid')
+    const numberNew = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-id');
+    const idNew = numberNew.json();
+    const idLast = numberLast.json();
+    
     const statUpdate = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-update');
     const temp = await statUpdate.json();
     statistics = temp["stats"]
 
-    const result = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-000');
-    const data = await result.json();
-    updateStat(data);
+    if (idNew["value"] != idLast["value"]) {
+        const result = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-000');
+        const data = await result.json();
+        updateStat(data);
+    }
     const options = {
         chart: {
             renderTo: 'graph',
@@ -113,9 +120,27 @@ async function updateGraph() {
     };
     var chart = new Highcharts.Chart(options)
     postStat();
+    idNew.then(function(res){
+        updateID(res)
+    });
 
 }
 
+function updateID(idNew) {
+    console.log('tried posting', idNew)
+    fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-lastid', {
+            method: 'POST',
+            body: JSON.stringify({
+                'data':  idNew
+                
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
+}
 
 
 function postStat() {
