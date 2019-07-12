@@ -6,11 +6,14 @@ const rightans = () =>{
     alert('คุณตอบถูกยินดีด้วย!');
 }
 
-const page_changer= (score) =>{
-    console.log('text')
-    if (score >= 19) {
-        document.getElementById('submit').href = '../../quiz1.html'
-    } else; {
-        document.getElementById('submit').href = '../../quiz1.html'
-    }
+const q2 = () =>{
+    alert('ช็อตไฟฟ้าในสมอง เป็นการรักษาผู้ป่วยซึมเศร้า');
+}
+
+const q3 = () =>{
+    alert('การกินยาปรับระดับสารเคมีในสมอง เป็นการรักษาผู้ป่วยซึมเศร้า')
+}
+
+const q4 = () =>{
+    alert('กการฝังเข็ม เป็นการรักษาผู้ป่วยซึมเศร้า')
 }
