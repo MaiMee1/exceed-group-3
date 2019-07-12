@@ -2,8 +2,7 @@ let cachedIndex = sessionStorage.getItem(window.location.href.split('/').slice(-
 
 $(document).ready(function(){
     if (cachedIndex != null) {
-        let x = $(`input[type=radio]:nth-child(${cachedIndex})`)
-        console.log(x)
+        $(`input[type=radio]`).eq(cachedIndex).attr('checked', true)
     }
 
     $('input[type=radio]').click(function(){
