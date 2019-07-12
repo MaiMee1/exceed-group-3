@@ -6,11 +6,7 @@ const rightans = () =>{
     alert('คุณตอบถูกยินดีด้วย!');
 }
 
-const page_changer= (score) =>{
-    console.log('text')
-    if (score >= 19) {
-        document.getElementById('submit').href = '../../quiz1.html'
-    } else; {
-        document.getElementById('submit').href = '../../quiz1.html'
-    }
+const q2 = () =>{
+    alert('โรคซึมเศร้าเป็นโรคที่เกี่ยวกับความผิดปกติของสารเคมีในสมอง การกระตุ้นด้วยสนามแม่เหล็กจึงไม่ช่วยอะไร');
 }
+
