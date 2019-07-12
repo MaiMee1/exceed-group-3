@@ -84,3 +84,4 @@ if (referer == 1) {
     else { linkto = "../learn/index.htmll"; }
 }
 
+postData({value: Math.floor(Math.random() * 100000)}, domain + '-data-lastid')
