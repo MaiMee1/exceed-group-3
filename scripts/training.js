@@ -6,6 +6,11 @@ const rightans = () =>{
     alert('คุณตอบถูกยินดีด้วย!');
 }
 
-const text = () =>{
-    console.log('kkkkkk')
+const page_changer= (score) =>{
+    console.log('text')
+    if (score >= 19) {
+        document.getElementById('submit').href = '../../quiz1.html'
+    } else; {
+        document.getElementById('submit').href = '../../quiz1.html'
+    }
 }
