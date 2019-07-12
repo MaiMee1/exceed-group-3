@@ -32,14 +32,16 @@ function updateStat(result) {
 async function updateGraph() {
     const numberLast = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-lastid')
     const numberNew = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-id');
-    const idNew = numberNew.json();
-    const idLast = numberLast.json();
+    const idNew = await numberNew.json();
+    const idLast = await numberLast.json();
     
     const statUpdate = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-update');
     const temp = await statUpdate.json();
     statistics = temp["stats"]
-
+    console.log(idNew)
+    console.log(idLast)
     if (idNew["value"] != idLast["value"]) {
+        console.log("changestat")
         const result = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-000');
         const data = await result.json();
         updateStat(data);
@@ -120,9 +122,8 @@ async function updateGraph() {
     };
     var chart = new Highcharts.Chart(options)
     postStat();
-    idNew.then(function(res){
-        updateID(res)
-    });
+    updateID(idNew);
+    
 
 }
 
