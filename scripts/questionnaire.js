@@ -1,13 +1,21 @@
 const domain = 'https://exceed.superposition.pknn.dev/data/love-shot'
-let cachedIndex = sessionStorage.getItem(window.location.href.split('/').slice(-2).join('/'))[0]
+let cachedData = sessionStorage.getItem(window.location.href.split('/').slice(-2).join('/'))
+console.log(cachedData)
 
 $(document).ready(function () {
-    if (cachedIndex != null) {
-        $(`input[type=radio]`).eq(cachedIndex).attr('checked', true)
+    try {
+        if (cachedData[0] != null) {
+            $(`input[type=radio]`).eq(cachedData[0]).attr('checked', true)
+        }
+    }
+    catch (e) {
+        //
     }
 
     $('input[type=radio]').click(function () {
         var index = $(this).index('input[type=radio]');
+
+        $('.button').addClass('is-loading')
 
         fetch(domain + '-detector').then(function (response) {
             data = response.json()
@@ -18,6 +26,8 @@ $(document).ready(function () {
                 }
             }
             sessionStorage.setItem(window.location.href.split('/').slice(-2).join('/'), [index, lie])
+            $('.button').removeClass('is-loading')
+
         })
     });
 
