@@ -1,4 +1,5 @@
-let cachedIndex = sessionStorage.getItem(window.location.href.split('/').slice(-2).join('/'))
+const domain = 'https://exceed.superposition.pknn.dev/data/love-shot'
+let cachedIndex = sessionStorage.getItem(window.location.href.split('/').slice(-2).join('/'))[0]
 
 $(document).ready(function () {
     if (cachedIndex != null) {
@@ -7,48 +8,85 @@ $(document).ready(function () {
 
     $('input[type=radio]').click(function () {
         var index = $(this).index('input[type=radio]');
-        console.log(index, window.location.href.split('/').slice(-2).join('/'));
-        sessionStorage.setItem(window.location.href.split('/').slice(-2).join('/'), index)
+
+        fetch(domain + '-detector').then(function (response) {
+            data = response.json()
+            let lie = false
+            for (key of ["Heartbeat", "Compass", "Temphumid"]) {
+                if (data[key] == 'Lie') {
+                    lie = true
+                }
+            }
+            sessionStorage.setItem(window.location.href.split('/').slice(-2).join('/'), [index, lie])
+        })
     });
 
-    $('#test').click(function() {
-        getDetection()
-    })
+    $('a[type=submit]').click(function () {
+        let x = []
+        for (let i = 1; i < 10; i++) {
+            x.push(sessionStorage.getItem(window.location.href.split('/').slice(-2)[0] + '/' + i.toString() + '.html'));
+            console.log(window.location.href.split('/').slice(-2)[0] + '/' + i.toString() + '.html');
+        }
+        console.log(x)
+        postData({
+            1: x[0],
+            2: x[1],
+            3: x[2],
+            4: x[3],
+            5: x[4],
+            6: x[5],
+            7: x[6],
+            8: x[7],
+            9: x[8]
+        }, domain + '-data-')
+    });
 });
 
 function getDetection(url = 'https://exceed.superposition.pknn.dev/data/love-shot') {
     return fetch(url)
-        .then(res => res.headers)
-        .then(function (header) {
-            console.log(header.get('Date'));
+        .then(function (response) {
+            console.log(response.headers.get('Content-Type'));
+            console.log(response.headers.get('Date'));
+
+            console.log(response.status);
+            console.log(response.statusText);
+            console.log(response.type);
+            console.log(response.url);
         })
         .catch(error => console.error('Error:', error));
 }
 
-function generateUnusedURL(baseURL = 'https://exceed.superposition.pknn.dev/data/love-shot') {
+function generateUnusedURL(baseURL = 'https://exceed.superposition.pknn.dev/data/love-shot-data') {
+    let append = 0
     while (true) {
-        fetch(url)
-        .then(res => res.json())
-        .then(function (myJson) {
-            console.log(JSON.stringify(myJson))
-            newData = myJson;
-        })
-        .catch(error => console.error('Error:', error));
-        break
+        fetch(baseURL + `${append}`.padStart(3, '0'))
+            .then(function (response) {
+                append = append + 1
+                continue
+            })
+            .catch(function (error) {
+                break
+            });
     }
+    return baseURL + `${append}`.padStart(3, '0')
 }
 
-function getData(url = 'https://exceed.superposition.pknn.dev/data/love-shot') {
-    return fetch(url)
+var t = 0
+
+function getJsonData(url = 'https://exceed.superposition.pknn.dev/data/love-shot') {
+    fetch(url)
         .then(res => res.json())
         .then(function (myJson) {
             console.log(JSON.stringify(myJson))
-            newData = myJson;
+            t = myJson;
+            console.log(myJson)
         })
         .catch(error => console.error('Error:', error));
+    console.log(t)
 }
 
-function postData(data = {}, url = 'https://exceed.superposition.pknn.dev/data/love-shot') {
+
+function postData(data = {}, url = 'https://exceed.superposition.pknn.dev/data/love-shot-data-000') {
     console.log('tried posting ' + JSON.stringify(data))
     fetch(url, {
         method: 'POST',
@@ -60,4 +98,3 @@ function postData(data = {}, url = 'https://exceed.superposition.pknn.dev/data/l
         .then(response => console.log('Success:', JSON.stringify(response)))
         .catch(error => console.error('Error:', error));
 }
-
