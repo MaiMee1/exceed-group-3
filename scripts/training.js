@@ -5,3 +5,7 @@ const q1 = () =>{
 const rightans = () =>{
     alert('คุณตอบถูกยินดีด้วย!');
 }
+
+const text = () =>{
+    console.log('kkkkkk')
+}
