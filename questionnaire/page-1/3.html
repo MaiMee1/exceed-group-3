@@ -2,6 +2,14 @@
 <html lang="en">
 
 <head>
+    <style>
+            .unselectable {user-select: none; 
+                        -moz-user-select: none;
+                        -khtml-user-select: none;
+                        -webkit-user-select: none;
+                        -o-user-select: none;
+                        user-select: none;}
+    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Help mind health - questionnaire</title>
@@ -9,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../css/hide.css">
 </head>
 
 <body>
@@ -49,8 +58,7 @@
                         <div class='column'>
                             <label class="radio">
                                 <input type="radio" name="member">
-                                เป็นบ่อย >7 วัน
-                            </label>
+                                เป็นทุกวัน                            </label>
                         </div>
                     </div>
                 </h2>
@@ -58,17 +66,30 @@
             <div></div>
         </div>
         <div class="container">
-            <nav class="level">
-                <div class = 'level-left'>
-                    <div class = 'level-item'>
-                    <div class="buttons are-medium">
-                        <a class="button is-primary" href = '2.html'>Back</a>
-                        <a class="button is-primary" type='submit' style = 'display: none'>Submit</a>
-                        <a class="button is-primary" href = '4.html'>Next</a>
-                    </div>
+                <div class="columns is-mobile">
+                        <div class="column is-one-fifth">
+                                <a class="button is-primary " href='2.html'>Back</a>
+
+                        </div>
+                        <div class="column is-one-fifth">
+                                <a class="button is-primary " href='4.html'>Next</a>
+                        </div>
+
+
+
+
+                </div>
+            <!-- <nav class="level">
+                <div class='level-left'>
+                    <div class='level-item'>
+                        <div class="buttons are-medium">
+                            <a class="button invisible unselectable">Back</a>
+                            <a class="button invisible unselectable" type='submit'>Submit</a>
+                            <a class="button is-primary " href='2.html'>Next</a>
+                        </div>
                     </div>
                 </div>
-            </nav>
+            </nav> -->
         </div>
     </section>
 
