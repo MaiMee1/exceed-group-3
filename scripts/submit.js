@@ -76,12 +76,16 @@ let result = null
 if (referer == 1) {
     result = handle('page-1', 9)
     console.log(result)
-    if (result >= 7) { linkto = "meetDoc.html"; }
-    else { linkto = "safe.html"; }
+    if (result < 7) { linkto = "safe.html"; }
+    else if (result <= 12) { linkto = "level1.html"; }
+    else if (result <= 18) { linkto = "level1.html"; }
+    else { linkto = "level1.html"; }
 } else if (referer == 2) {
     result = handle('page-2', 9)
-    if (result >= 7) { linkto = "meetDoc.html"; }
-    else { linkto = "safe.htmll"; }
+    if (result < 7) { linkto = "safe.htmll"; }
+    else if (result <= 12) { linkto = "level1.html"; }
+    else if (result <= 18) { linkto = "level1.html"; }
+    else { linkto = "level1.html"; }
 }
 
 postData({value: Math.floor(Math.random() * 100000)}, domain + '-data-lastid')
