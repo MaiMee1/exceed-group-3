@@ -1,11 +1,28 @@
 const domain = 'https://exceed.superposition.pknn.dev/data/love-shot'
 let linkto = null
 
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+  
+  async function demo() {
+    console.log('Taking a break...');
+    await sleep(2000);
+    console.log('Two seconds later, showing sleep in a loop...');
+  
+    // Sleep in loop
+    for (let i = 0; i < 5; i++) {
+      if (i === 3)
+        await sleep(2000);
+      console.log(i);
+    }
+  }
+
 function handle(page, num) {
     let x = []
     for (let i = 1; i < num + 1; i++) {
-        x.push(sessionStorage.getItem(page + '/' + i.toString() + '.html'));
-        console.log(page + '/' + i.toString() + '.html');
+        let temp = sessionStorage.getItem(page + '/' + i.toString() + '.html').split(',')
+        x.push([parseInt(temp[0]), temp[1]=='true']);
     }
     console.log(x)
     postData({
@@ -19,7 +36,7 @@ function handle(page, num) {
         8: x[7],
         9: x[8]
     }, domain + '-data-000')
-    return x.reduce((a, b) => a + b, 0)
+    return x[0][0] + x[1][0] + x[2][0] + x[3][0] + x[4][0] + x[5][0] + x[6][0] + x[7][0] + x[8][0]
 }
 
 function postData(data = {}, url = 'https://exceed.superposition.pknn.dev/data/love-shot-data-000') {
@@ -32,7 +49,10 @@ function postData(data = {}, url = 'https://exceed.superposition.pknn.dev/data/l
         }
     }).then(res => res.json())
         .then(response => console.log('Success:', JSON.stringify(response)))
-        .then(function (response) {window.location.href = linkto})
+        .then(async function (response) {
+            await sleep(1000);
+            window.location.href = linkto
+            })
         .catch(error => console.error('Error:', error));
 }
 
@@ -57,11 +77,12 @@ let result = null
 
 if (referer == 1) {
     result = handle('page-1', 9)
-    if (result > 7) { linkto = "result/highrish.html"; }
-    else { linkto = "result/highrish.html"; }
+    console.log(result)
+    if (result >= 7) { linkto = "meetDoc.html"; }
+    else { linkto = "../learn/index.html"; }
 } else if (referer == 2) {
     result = handle('page-2', 9)
-    if (result > 7) { linkto = "result/highrish.html"; }
-    else { linkto = "result/highrish.html"; }
+    if (result >= 7) { linkto = "meetDoc.html"; }
+    else { linkto = "../learn/index.htmll"; }
 }
 
