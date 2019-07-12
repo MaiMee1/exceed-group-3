@@ -19,11 +19,15 @@ $(document).ready(function () {
 
         fetch(domain + '-detector').then(function (response) {
             data = response.json()
-            let lie = false
+            let count = 0
             for (key of ["Heartbeat", "Compass", "Temphumid"]) {
                 if (data[key] == 'Lie') {
-                    lie = true
+                    count = count + 1
                 }
+            }
+            let lie = false
+            if (count > 1) {
+                lie = true
             }
             sessionStorage.setItem(window.location.href.split('/').slice(-2).join('/'), [index, lie])
             $('.button').removeClass('is-loading')

@@ -51,7 +51,7 @@ async function updateGraph() {
             renderTo: 'graph',
             type: 'column'
         },
-        colors: ['#eb8181', '#86d780'],
+        colors: ['#86d780', '#eb8181'],
 
         title: {
             text: 'สถิติการทำแบบสอบถาม'
@@ -95,27 +95,27 @@ async function updateGraph() {
             data: statistics[0][0],
             stack: 'ตัวเลือก1'
         }, {
-            name: '2',
+            name: '2*',
             data: statistics[1][1],
             stack: 'ตัวเลือก2'
         }, {
-            name: '2*',
+            name: '2',
             data: statistics[1][0],
             stack: 'ตัวเลือก2'
         }, {
-            name: '3',
+            name: '3*',
             data: statistics[2][1],
             stack: 'ตัวเลือก3'
         }, {
-            name: '3*',
+            name: '3',
             data: statistics[2][0],
             stack: 'ตัวเลือก3'
         }, {
-            name: '4',
+            name: '4*',
             data: statistics[3][1],
             stack: 'ตัวเลือก4'
         }, {
-            name: '4*',
+            name: '4',
             data: statistics[3][0],
             stack: 'ตัวเลือก4'
         }]
