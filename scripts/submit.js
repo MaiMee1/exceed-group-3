@@ -36,12 +36,15 @@ function handle(page, num) {
         8: x[7],
         9: x[8]
     }, domain + '-data-000')
+    postData({value: Math.floor(Math.random() * 100000)}, domain + '-data-id').then(async function (res) {
+        await sleep(100);
+        window.location.href = linkto;
+    })
     return x[0][0] + x[1][0] + x[2][0] + x[3][0] + x[4][0] + x[5][0] + x[6][0] + x[7][0] + x[8][0]
 }
 
-function postData(data = {}, url = 'https://exceed.superposition.pknn.dev/data/love-shot-data-000') {
-    console.log('tried posting ' + JSON.stringify(data))
-    fetch(url, {
+function postData(data = {}, url = 'https://exceed.superposition.pknn.dev/data/love-shot') {
+    return fetch(url, {
         method: 'POST',
         body: JSON.stringify({ "data": data }),
         headers: {
@@ -49,10 +52,6 @@ function postData(data = {}, url = 'https://exceed.superposition.pknn.dev/data/l
         }
     }).then(res => res.json())
         .then(response => console.log('Success:', JSON.stringify(response)))
-        .then(async function (response) {
-            await sleep(1000);
-            window.location.href = linkto
-            })
         .catch(error => console.error('Error:', error));
 }
 
@@ -69,7 +68,6 @@ try {
             referer = temp[1]
         }
     }
-    console.log(1)
 }
 catch (e) { }
 
@@ -78,11 +76,16 @@ let result = null
 if (referer == 1) {
     result = handle('page-1', 9)
     console.log(result)
-    if (result >= 7) { linkto = "meetDoc.html"; }
-    else { linkto = "../learn/index.html"; }
+    if (result < 7) { linkto = "safe.html"; }
+    else if (result <= 12) { linkto = "level1.html"; }
+    else if (result <= 18) { linkto = "level1.html"; }
+    else { linkto = "level1.html"; }
 } else if (referer == 2) {
     result = handle('page-2', 9)
-    if (result >= 7) { linkto = "meetDoc.html"; }
-    else { linkto = "../learn/index.htmll"; }
+    if (result < 7) { linkto = "safe.htmll"; }
+    else if (result <= 12) { linkto = "level1.html"; }
+    else if (result <= 18) { linkto = "level1.html"; }
+    else { linkto = "level1.html"; }
 }
 
+postData({value: Math.floor(Math.random() * 100000)}, domain + '-data-lastid')

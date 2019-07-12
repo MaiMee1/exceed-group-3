@@ -30,19 +30,28 @@ function updateStat(result) {
 }
 
 async function updateGraph() {
+    const numberLast = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-lastid')
+    const numberNew = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-id');
+    const idNew = await numberNew.json();
+    const idLast = await numberLast.json();
+    
     const statUpdate = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-update');
     const temp = await statUpdate.json();
     statistics = temp["stats"]
-
-    const result = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-000');
-    const data = await result.json();
-    updateStat(data);
+    console.log(idNew)
+    console.log(idLast)
+    if (idNew["value"] != idLast["value"]) {
+        console.log("changestat")
+        const result = await fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-000');
+        const data = await result.json();
+        updateStat(data);
+    }
     const options = {
         chart: {
             renderTo: 'graph',
             type: 'column'
         },
-        colors: ['#eb8181', '#86d780'],
+        colors: ['#86d780', '#eb8181'],
 
         title: {
             text: 'สถิติการทำแบบสอบถาม'
@@ -86,36 +95,53 @@ async function updateGraph() {
             data: statistics[0][0],
             stack: 'ตัวเลือก1'
         }, {
-            name: '2',
+            name: '2*',
             data: statistics[1][1],
             stack: 'ตัวเลือก2'
         }, {
-            name: '2*',
+            name: '2',
             data: statistics[1][0],
             stack: 'ตัวเลือก2'
         }, {
-            name: '3',
+            name: '3*',
             data: statistics[2][1],
             stack: 'ตัวเลือก3'
         }, {
-            name: '3*',
+            name: '3',
             data: statistics[2][0],
             stack: 'ตัวเลือก3'
         }, {
-            name: '4',
+            name: '4*',
             data: statistics[3][1],
             stack: 'ตัวเลือก4'
         }, {
-            name: '4*',
+            name: '4',
             data: statistics[3][0],
             stack: 'ตัวเลือก4'
         }]
     };
     var chart = new Highcharts.Chart(options)
     postStat();
+    updateID(idNew);
+    
 
 }
 
+function updateID(idNew) {
+    console.log('tried posting', idNew)
+    fetch('https://exceed.superposition.pknn.dev/data/love-shot-data-lastid', {
+            method: 'POST',
+            body: JSON.stringify({
+                'data':  idNew
+                
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(response => console.log('Success:', JSON.stringify(response)))
+        .catch(error => console.error('Error:', error));
+}
 
 
 function postStat() {

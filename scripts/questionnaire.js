@@ -19,11 +19,15 @@ $(document).ready(function () {
 
         fetch(domain + '-detector').then(function (response) {
             data = response.json()
-            let lie = false
+            let count = 0
             for (key of ["Heartbeat", "Compass", "Temphumid"]) {
                 if (data[key] == 'Lie') {
-                    lie = true
+                    count = count + 1
                 }
+            }
+            let lie = false
+            if (count > 1) {
+                lie = true
             }
             sessionStorage.setItem(window.location.href.split('/').slice(-2).join('/'), [index, lie])
             $('.button').removeClass('is-loading')
@@ -32,23 +36,7 @@ $(document).ready(function () {
     });
 
     $('a[type=submit]').click(function () {
-        let x = []
-        for (let i = 1; i < 10; i++) {
-            x.push(sessionStorage.getItem(window.location.href.split('/').slice(-2)[0] + '/' + i.toString() + '.html'));
-            console.log(window.location.href.split('/').slice(-2)[0] + '/' + i.toString() + '.html');
-        }
-        console.log(x)
-        postData({
-            1: x[0],
-            2: x[1],
-            3: x[2],
-            4: x[3],
-            5: x[4],
-            6: x[5],
-            7: x[6],
-            8: x[7],
-            9: x[8]
-        }, domain + '-data-')
+        //
     });
 });
 
