@@ -32,23 +32,7 @@ $(document).ready(function () {
     });
 
     $('a[type=submit]').click(function () {
-        let x = []
-        for (let i = 1; i < 10; i++) {
-            x.push(sessionStorage.getItem(window.location.href.split('/').slice(-2)[0] + '/' + i.toString() + '.html'));
-            console.log(window.location.href.split('/').slice(-2)[0] + '/' + i.toString() + '.html');
-        }
-        console.log(x)
-        postData({
-            1: x[0],
-            2: x[1],
-            3: x[2],
-            4: x[3],
-            5: x[4],
-            6: x[5],
-            7: x[6],
-            8: x[7],
-            9: x[8]
-        }, domain + '-data-')
+        //
     });
 });
 
