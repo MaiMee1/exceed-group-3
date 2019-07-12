@@ -5,6 +5,7 @@
     -webkit-user-select: none;
     -o-user-select: none;
     user-select: none;
+
 }
 
 .invisible {
@@ -14,4 +15,5 @@
     cursor: pointer !important;
     overflow: hidden;
     color: transparent !important;
+    cursor: default !important;
 }
