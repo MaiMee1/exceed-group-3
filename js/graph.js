@@ -87,35 +87,35 @@ async function updateGraph() {
 
         // * คือโกหก
         series: [{
-            name: '1*',
+            name: '1',
             data: statistics[0][1],
             stack: 'ตัวเลือก1'
         }, {
-            name: '1',
+            name: '1*',
             data: statistics[0][0],
             stack: 'ตัวเลือก1'
         }, {
-            name: '2*',
+            name: '2',
             data: statistics[1][1],
             stack: 'ตัวเลือก2'
         }, {
-            name: '2',
+            name: '2*',
             data: statistics[1][0],
             stack: 'ตัวเลือก2'
         }, {
-            name: '3*',
+            name: '3',
             data: statistics[2][1],
             stack: 'ตัวเลือก3'
         }, {
-            name: '3',
+            name: '3*',
             data: statistics[2][0],
             stack: 'ตัวเลือก3'
         }, {
-            name: '4*',
+            name: '4',
             data: statistics[3][1],
             stack: 'ตัวเลือก4'
         }, {
-            name: '4',
+            name: '4*',
             data: statistics[3][0],
             stack: 'ตัวเลือก4'
         }]
