@@ -26,7 +26,7 @@ $(document).ready(function () {
                 }
             }
             let lie = false
-            if (count > 1) {
+            if (count > 0) {
                 lie = true
             }
             sessionStorage.setItem(window.location.href.split('/').slice(-2).join('/'), [index, lie])
