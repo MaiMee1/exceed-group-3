@@ -18,10 +18,11 @@ $(document).ready(function () {
         $('.button').addClass('is-loading')
 
         fetch(domain + '-detector').then(function (response) {
-            data = response.json()
+            return response.json()
+        }).then(function (data) {
             let count = 0
-            for (key of ["Heartbeat", "Compass", "Temphumid"]) {
-                if (data[key] == 'Lie') {
+            for (value of ["Heartbeat", "Compass", "Temphumid"]) {
+                if (data[value] == 'Lie') {
                     count = count + 1
                 }
             }
@@ -31,7 +32,6 @@ $(document).ready(function () {
             }
             sessionStorage.setItem(window.location.href.split('/').slice(-2).join('/'), [index, lie])
             $('.button').removeClass('is-loading')
-
         })
     });
 
