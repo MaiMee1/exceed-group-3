@@ -78,14 +78,14 @@ if (referer == 1) {
     console.log(result)
     if (result < 7) { linkto = "safe.html"; }
     else if (result <= 12) { linkto = "level1.html"; }
-    else if (result <= 18) { linkto = "level1.html"; }
-    else { linkto = "level1.html"; }
+    else if (result <= 18) { linkto = "level2.html"; }
+    else { linkto = "level3.html"; }
 } else if (referer == 2) {
     result = handle('page-2', 9)
     if (result < 7) { linkto = "safe.htmll"; }
     else if (result <= 12) { linkto = "level1.html"; }
-    else if (result <= 18) { linkto = "level1.html"; }
-    else { linkto = "level1.html"; }
+    else if (result <= 18) { linkto = "level2.html"; }
+    else { linkto = "level3.html"; }
 }
 
 postData({value: Math.floor(Math.random() * 100000)}, domain + '-data-lastid')
