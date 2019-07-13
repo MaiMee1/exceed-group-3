@@ -9,7 +9,7 @@ const rightans = () =>{
 }
 
 const q2 = () =>{
-    document.getElementById('answer').innerText ='ช็อตไฟฟ้าในสมอง,การกินยาปรับระดับสารเคมีในสมอง,การฝังเข็ม เป็นการรักษาผู้ป่วยซึมเศร้า'
+    document.getElementById('answer').innerText ='ช็อตไฟฟ้าในสมอง,การกินยาปรับระดับสารเคมีในสมอง,การกระตุ้นด้วยสนามแม่เหล็ก เป็นการรักษาผู้ป่วยซึมเศร้า'
     document.getElementById('answer').style.display = 'block'
 }
 
